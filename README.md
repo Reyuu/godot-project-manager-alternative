@@ -1,5 +1,6 @@
 # Godot Project Manager alternative
 
+![](screenshot.png)
 ## Overview
 Didn't like the Godot project manager and didn't feel like modifying Godot code. This is a personal project. If you manage to get something out of it - that's great.
 

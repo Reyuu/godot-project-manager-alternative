@@ -452,7 +452,7 @@ class MainAppWindow(QtWidgets.QMainWindow, MainWindow.Ui_MainWindow):
             print_debug(f"{item.text()} {item.data(QtCore.Qt.UserRole)}")
         if os.name == "nt":
             subprocess.Popen([self.ph._config["godotLocation"], item.data(QtCore.Qt.UserRole)], creationflags=subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP)
-        if os.name == "posix":
+        elif os.name == "posix":
             subprocess.Popen([self.ph._config["godotLocation"], item.data(QtCore.Qt.UserRole)], preexec_fn=os.setpgrp)
         else:
             #have fun with launcher that hangs lol

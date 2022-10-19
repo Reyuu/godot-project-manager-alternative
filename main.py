@@ -300,7 +300,7 @@ class NewProjectFromTemplate(QtWidgets.QDialog):
         for p in pathlib.Path("./templates").glob("*"):
             self.templates_combobox.addItem(str(p), userData=p)
 
-        name_label = QtWidgets.QLabel("Projct name")
+        name_label = QtWidgets.QLabel("Project name")
         self.name_line_edit = QtWidgets.QLineEdit("")
 
         self.main_layout.addWidget(explanation_label)

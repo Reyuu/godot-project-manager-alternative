@@ -1,4 +1,4 @@
-from PySide6 import QtWidgets
+import PySide6.QtWidgets as QtWidgets
 
 
 class RenameProjectDialog(QtWidgets.QDialog):

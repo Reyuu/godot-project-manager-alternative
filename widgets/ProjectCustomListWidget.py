@@ -1,4 +1,6 @@
-from PySide6 import QtCore, QtGui, QtWidgets
+import PySide6.QtWidgets as QtWidgets
+import PySide6.QtCore as QtCore
+import PySide6.QtGui as QtGui
 from handlers.MiscHandlers import get_contrasting_color
 
 import widgets.ProjectListWidget as ProjectListWidget

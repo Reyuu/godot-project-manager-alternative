@@ -10,7 +10,11 @@ Didn't like the Godot project manager and didn't feel like modifying Godot code.
 - create a project from a template
 - rename and remove a project
 - dark mode by default
-- ...maybe a few other *unexpected* features
+
+## Planned features
+- options menu
+- go to project directory right-click option
+- multi directory support
 
 # Configuration
 Copy the `config_template.json` and paste as `config.json`.

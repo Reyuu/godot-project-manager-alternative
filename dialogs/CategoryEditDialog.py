@@ -1,6 +1,5 @@
 import random
-from PySide6 import QtWidgets
-
+import PySide6.QtWidgets as QtWidgets
 
 class CategoryEditDialog(QtWidgets.QDialog):
     def __init__(self, current_state = None):

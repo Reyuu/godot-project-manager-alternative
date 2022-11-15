@@ -6,3 +6,8 @@ venv
 config.json
 build/
 projects.json
+*.dist/*
+*.build/*
+*.onefile-build/*
+*.exe
+*.out/*

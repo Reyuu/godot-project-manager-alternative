@@ -7,7 +7,10 @@ import sys
 import os
 import shutil
 import qdarktheme
-from PySide6 import QtWidgets, QtCore, QtGui
+#from PySide6 import QtWidgets, QtCore, QtGui
+import PySide6.QtWidgets as QtWidgets
+import PySide6.QtCore as QtCore
+import PySide6.QtGui as QtGui
 from rich.pretty import pprint
 
 import widgets.MainWindow as MainWindow
@@ -276,7 +279,6 @@ class MainAppWindow(QtWidgets.QMainWindow, MainWindow.Ui_MainWindow):
 
 
 if __name__ == "__main__":
-    DEBUG = False
     app = QtWidgets.QApplication(sys.argv)
     app.setStyleSheet(qdarktheme.load_stylesheet())
     window = MainAppWindow()

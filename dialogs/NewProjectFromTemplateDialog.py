@@ -1,4 +1,5 @@
 import pathlib
+
 import PySide6.QtWidgets as QtWidgets
 
 
@@ -14,7 +15,9 @@ class NewProjectFromTemplateDialog(QtWidgets.QDialog):
 
         self.main_layout = QtWidgets.QFormLayout()
 
-        explanation_label = QtWidgets.QLabel("Create a new project from a template in a projects directory.")
+        explanation_label = QtWidgets.QLabel(
+            "Create a new project from a template in a projects directory."
+        )
 
         templates_label = QtWidgets.QLabel("Template")
         self.templates_combobox = QtWidgets.QComboBox()
@@ -35,5 +38,5 @@ class NewProjectFromTemplateDialog(QtWidgets.QDialog):
     def get_values(self):
         return {
             "chosen_template": self.templates_combobox.currentData(),
-            "project_name": self.name_line_edit.text()
+            "project_name": self.name_line_edit.text(),
         }

@@ -1,41 +1,43 @@
 import json
 import pathlib
 import re
-from handlers.DebugHandlers import (print_debug, pprint_debug)
+
+from handlers.DebugHandlers import pprint_debug, print_debug
+
 
 def _parse_project_godot(s, config_key="name"):
-    main_regex = r"config\/"+config_key+r"=\"(.*?)\""
+    main_regex = r"config\/" + config_key + r"=\"(.*?)\""
     result = re.findall(main_regex, s)
     if len(result) > 0:
         return result[0]
     else:
         return "N/A"
 
+
 class ProjectHandler:
     def __init__(self):
         self.categories = {}
         self.selected_categories = []
-        #load config
+        # load config
         self._config = self.config_load(pathlib.Path("./config.json"))
         self.projects_dir = pathlib.Path(self._config["projectsDir"])
-        #check if projects.json is not generated
+        # check if projects.json is not generated
         project_json_dir = pathlib.Path(self._config["saveProjectsDir"])
         self.project_data = {}
         if project_json_dir.exists():
             ##load json
             with open(project_json_dir, "r", encoding="utf-8") as f:
                 self.project_data = json.loads(f.read())
-            #load categories
+            # load categories
             self.selected_categories = self.project_data["last_categories"]
             self.categories = self.project_data["definitions"]["categories"]
-            missing_projects = set(self._get_valid_projects()) - set(list(self.project_data["projects"].keys()))
+            missing_projects = set(self._get_valid_projects()) - set(
+                list(self.project_data["projects"].keys())
+            )
             for project in missing_projects:
-                self.project_data["projects"].update({
-                    project: {
-                        "categories": [],
-                        "favorite": False
-                    }
-                })
+                self.project_data["projects"].update(
+                    {project: {"categories": [], "favorite": False}}
+                )
             self.save_projects_json()
         else:
             self.project_data = self.create_first_json(self._get_valid_projects())
@@ -54,7 +56,7 @@ class ProjectHandler:
                 self.project_data["projects"][key].update({"name": tmp_val, "icon": tmp_image_path})
             else:
                 invalid_keys += [key]
-        #delete invalid keys - probably deleted from drive
+        # delete invalid keys - probably deleted from drive
         for key in invalid_keys:
             self.project_data["projects"].pop(key)
         pprint_debug(self.project_data)
@@ -79,18 +81,13 @@ class ProjectHandler:
     def create_first_json(self, valid_projects):
         output_dict = {}
         for project in valid_projects:
-            output_dict.update({
-                project: {
-                    "categories": [],
-                    "favorite": False
-                }
-            })
+            output_dict.update({project: {"categories": [], "favorite": False}})
         output_dict = {
             "last_categories": [],
             "definitions": {
                 "categories": {},
             },
-            "projects": output_dict
+            "projects": output_dict,
         }
         pprint_debug(output_dict)
         with open(self._config["saveProjectsDir"], "w", encoding="utf-8") as f:
@@ -103,7 +100,7 @@ class ProjectHandler:
             return self.project_data["projects"]
         for key in self.project_data["projects"].keys():
             item = self.project_data["projects"][key]
-            if not(set(categories) <= set(item["categories"])):
+            if not (set(categories) <= set(item["categories"])):
                 continue
             tmp_projects.update({key: item})
         return tmp_projects

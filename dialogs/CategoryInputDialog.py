@@ -1,5 +1,6 @@
-import PySide6.QtWidgets as QtWidgets
 import PySide6.QtCore as QtCore
+import PySide6.QtWidgets as QtWidgets
+
 
 class CategoryInputDialog(QtWidgets.QDialog):
     def __init__(self, parent, categories, selected_categories):

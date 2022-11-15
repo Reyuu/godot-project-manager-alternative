@@ -1,6 +1,6 @@
-import subprocess
 import pathlib
 import shutil
+import subprocess
 
 root_path = pathlib.Path(".")
 shutil.rmtree(root_path / "main.out")
@@ -8,7 +8,9 @@ shutil.rmtree(root_path / "main.out")
 out_path = root_path / "main.out"
 out_icons = out_path / "icons"
 
-res = subprocess.run("venv\\Scripts\\python -m nuitka --follow-imports --enable-plugin=pyside6 --disable-console --onefile .\main.py")
+res = subprocess.run(
+    "venv\\Scripts\\python -m nuitka --follow-imports --enable-plugin=pyside6 --disable-console --onefile .\main.py"
+)
 res.check_returncode()
 
 shutil.copytree(root_path / "icons", out_path / "icons")

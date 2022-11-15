@@ -1,8 +1,10 @@
 import random
+
 import PySide6.QtWidgets as QtWidgets
 
+
 class CategoryEditDialog(QtWidgets.QDialog):
-    def __init__(self, current_state = None):
+    def __init__(self, current_state=None):
         super(CategoryEditDialog, self).__init__()
         if current_state:
             self.setWindowTitle("Edit a category")
@@ -50,6 +52,6 @@ class CategoryEditDialog(QtWidgets.QDialog):
         return {
             self.id_line_edit.text(): {
                 "name": self.name_line_edit.text(),
-                "description": self.description_text_edit.toPlainText()
+                "description": self.description_text_edit.toPlainText(),
             }
         }

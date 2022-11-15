@@ -20,9 +20,7 @@ from dialogs.CategoryInputDialog import CategoryInputDialog
 from dialogs.NewProjectFromTemplateDialog import NewProjectFromTemplateDialog
 from dialogs.RenameProjectDialog import RenameProjectDialog
 
-##################
-# Main application class
-##################
+
 class MainAppWindow(QtWidgets.QMainWindow, MainWindow.Ui_MainWindow):
     def __init__(self):
         super(MainAppWindow, self).__init__()

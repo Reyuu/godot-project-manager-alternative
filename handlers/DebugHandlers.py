@@ -1,7 +1,8 @@
 from pprint import pprint
+import os
 
 
-DEBUG = True
+DEBUG = os.environ["DEBUG"] == "TRUE"
 def print_debug(*args, **kwargs):
     if DEBUG:
         print("[DEBUG] ", end="")

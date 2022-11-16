@@ -9,11 +9,11 @@ Didn't like the Godot project manager and didn't feel like modifying Godot code.
 - favourite projects to shown before other projects
 - create a project from a template
 - rename and remove a project
+- go to project directory right-click option
 - dark mode by default
 
 ## Planned features
 - options menu
-- go to project directory right-click option
 - multi directory support
 
 # Configuration

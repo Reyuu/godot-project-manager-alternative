@@ -1,7 +1,8 @@
 import PySide6.QtCore as QtCore
 import PySide6.QtGui as QtGui
 import PySide6.QtWidgets as QtWidgets
-
+import pathlib
+import os
 import widgets.ProjectListWidget as ProjectListWidget
 from handlers.MiscHandlers import get_contrasting_color
 
@@ -58,5 +59,20 @@ class ProjectCustomListWidget(QtWidgets.QWidget, ProjectListWidget.Ui_widgetMain
         if parent:
             self.plus_button.pressed.connect(lambda: parent.handle_assign_category(self))
             self.favButton.pressed.connect(lambda: parent.handle_favorite_project(self))
-
-        self.setStyle
+    
+    def contextMenuEvent(self, event: QtGui.QContextMenuEvent) -> None:
+        super().contextMenuEvent(event)
+        right_click_menu = QtWidgets.QMenu(self)
+        actionGo_to_directory = QtGui.QAction("Go to directory", right_click_menu)
+        actionGo_to_directory.triggered.connect(self.go_to_project_directory)
+        right_click_menu.addAction(actionGo_to_directory)
+        right_click_menu.popup(QtGui.QCursor.pos())
+    
+    def go_to_project_directory(self):
+        
+        if os.name == "nt":
+            os.system(f'start {str(pathlib.Path(self.key).parent)}')
+        elif os.name == "posix":
+            os.system(f'xdg-open {str(pathlib.Path(self.key).parent)}')
+        else:
+            os.system(f'open {str(pathlib.Path(self.key).parent)}')

@@ -161,12 +161,12 @@ class MainAppWindow(QtWidgets.QMainWindow, MainWindow.Ui_MainWindow):
     def handle_projects(self, item):
         if item:
             print_debug(f"{item.text()} {item.data(QtCore.Qt.UserRole)}")
-        if os.name == "nt":
+        if sys.platform.startswith("win32"):
             subprocess.Popen(
                 [self.ph._config["godotLocation"], item.data(QtCore.Qt.UserRole)],
                 creationflags=subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP,
             )
-        elif os.name == "posix":
+        elif sys.platform.startswith("linux") or sys.platform.startswith("freebsd"):
             subprocess.Popen(
                 [self.ph._config["godotLocation"], item.data(QtCore.Qt.UserRole)],
                 preexec_fn=os.setpgrp,

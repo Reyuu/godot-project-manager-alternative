@@ -1,3 +1,4 @@
+import sys
 import PySide6.QtCore as QtCore
 import PySide6.QtGui as QtGui
 import PySide6.QtWidgets as QtWidgets
@@ -69,10 +70,10 @@ class ProjectCustomListWidget(QtWidgets.QWidget, ProjectListWidget.Ui_widgetMain
         right_click_menu.popup(QtGui.QCursor.pos())
     
     def go_to_project_directory(self):
-        
-        if os.name == "nt":
+
+        if sys.platform.startswith("win32"):
             os.system(f'start {str(pathlib.Path(self.key).parent)}')
-        elif os.name == "posix":
+        elif sys.platform.startswith("linux") or sys.platform.startswith("freebsd"):
             os.system(f'xdg-open {str(pathlib.Path(self.key).parent)}')
         else:
             os.system(f'open {str(pathlib.Path(self.key).parent)}')

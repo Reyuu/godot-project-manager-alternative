@@ -4,6 +4,7 @@ import PySide6.QtGui as QtGui
 import PySide6.QtWidgets as QtWidgets
 import pathlib
 import os
+import shlex
 import widgets.ProjectListWidget as ProjectListWidget
 from handlers.MiscHandlers import get_contrasting_color
 
@@ -70,10 +71,9 @@ class ProjectCustomListWidget(QtWidgets.QWidget, ProjectListWidget.Ui_widgetMain
         right_click_menu.popup(QtGui.QCursor.pos())
     
     def go_to_project_directory(self):
-
         if sys.platform.startswith("win32"):
-            os.system(f'start {str(pathlib.Path(self.key).parent)}')
+            os.startfile(str(pathlib.Path(self.key).parent))
         elif sys.platform.startswith("linux") or sys.platform.startswith("freebsd"):
-            os.system(f'xdg-open {str(pathlib.Path(self.key).parent)}')
+            os.system(f'xdg-open {shlex.quote(str(pathlib.Path(self.key).parent))}')
         else:
-            os.system(f'open {str(pathlib.Path(self.key).parent)}')
+            os.system(f'open {shlex.quote(str(pathlib.Path(self.key).parent))}')

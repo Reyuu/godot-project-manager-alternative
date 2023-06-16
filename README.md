@@ -1,4 +1,5 @@
 # Godot Project Manager alternative
+⚠ Archived due to Godot implementing tag system ([GH-75047](https://github.com/godotengine/godot/pull/75047)).
 
 ![](screenshot.png)
 ## Overview
